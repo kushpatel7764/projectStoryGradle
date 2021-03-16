@@ -1,13 +1,18 @@
 package bsu.comp152;
 
+import java.io.FileWriter;
+import java.io.*;
 import java.util.Scanner;
 
-public class Main {
+public class StoryWrite {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner keyboard = new Scanner(System.in);
         String name, city, college, profession, animal, petsName;
         int age;
+
+        FileWriter fw = new FileWriter("storyOut", true);
+        PrintWriter outputFile = new PrintWriter(fw);
 
         System.out.print("Provide a first name: ");
         name = keyboard.nextLine();
@@ -43,11 +48,12 @@ public class Main {
 
         System.out.println(); // Leave a blank line.
 
-        System.out.printf("There once was a person named %s who lived in %s.\n", name, city);
-        System.out.printf("At the age of %d, %s went to college at %s.\n", age, name, college);
-        System.out.printf("%s graduated and went to work as %s %s.\n", name, article(profession), profession);
-        System.out.printf("Then, %s adopted %s %s named %s.\n", name, article(animal), animal, petsName);
-        System.out.print("They lived happily ever after!");
+        outputFile.printf("There once was a person named %s who lived in %s.\n", name, city);
+        outputFile.printf("At the age of %d, %s went to college at %s.\n", age, name, college);
+        outputFile.printf("%s graduated and went to work as %s %s.\n", name, article(profession), profession);
+        outputFile.printf("Then, %s adopted %s %s named %s.\n", name, article(animal), animal, petsName);
+        outputFile.println("They lived happily ever after!");
+        outputFile.close();
         return;
 
     }
